@@ -1,20 +1,34 @@
 import CartItem from "./CartItem";
+import storeItems from '../data/storeItems'
 
-function Main(){
+function Main({cartItems, addItemToCart, removeItemFromCart}){
+
+  let total=0
+  cartItems.map(cartItem=>{
+    let itemDetail = storeItems.find(target=> target.id === cartItem.id)
+    total = total+ (itemDetail.price * cartItem.quantity)
+  })
+
     return (
         <main id="cart">
   <h2>Your Cart</h2>
-  <div class="cart--item-list-container">
-    <ul class="item-list cart--item-list">
-        <CartItem/>
+  <div className="cart--item-list-container">
+    <ul className="item-list cart--item-list">
+      {cartItems.map((cartItem, index)=>(
+        <CartItem key={index}
+        cartItem={cartItem}
+        addItemToCart={addItemToCart}
+        removeItemFromCart={removeItemFromCart}/>
+      ))}
+      
     </ul>
   </div>
-  <div class="total-section">
+  <div className="total-section">
     <div>
       <h3>Total</h3>
     </div>
     <div>
-      <span class="total-number">£0.00</span>
+      <span className="total-number">£{total.toFixed(2)}</span>
     </div>
   </div>
 </main>

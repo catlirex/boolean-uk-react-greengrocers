@@ -1,11 +1,20 @@
 import StoreItem from "./StoreItem";
 
-function Header(){
+import storeItems from '../data/storeItems'
+
+function Header(props){
     return (
-        <header id="store">
+
+    <header id="store">
   <h1>Greengrocers</h1>
-  <ul class="item-list store--item-list">
-      <StoreItem/>
+  <ul className="item-list store--item-list">
+     {storeItems.map((item, index) => (
+         <StoreItem 
+         key={index}
+         item={item}
+         addItemToCart={props.addItemToCart}/>
+     ))}
+      
   </ul>
 </header>
     )

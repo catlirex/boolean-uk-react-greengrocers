@@ -1,12 +1,14 @@
 
 
-function StoreItem(){
+function StoreItem({item, addItemToCart}){
+  const{ id, name, price} =item
     return (
         <li>
-  <div class="store--item-icon">
-    <img src="assets/icons/001-beetroot.svg" alt="beetroot" />
+  <div className="store--item-icon">
+    <img src={`assets/icons/${id}.svg`} alt={name} />
   </div>
-  <button>Add to cart</button>
+  <span>£{price} /each</span>
+  <button onClick={()=>addItemToCart(id)}>Add to cart</button>
 </li>
     )
 }
