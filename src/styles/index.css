@@ -53,6 +53,15 @@ button {
   height: 125px;
 }
 
+.action-bar {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.action-bar button {
+  margin-left: 5px;
+}
+
 @media only screen and (max-width: 600px) {
   .store--item-list {
     grid-template-columns: repeat(3, 125px);
