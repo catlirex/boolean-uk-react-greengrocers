@@ -44,7 +44,16 @@ export default function App() {
       }
   }
 
-
+  function updateQuantityFromInput(newQuantity, itemID){
+    
+    let updatedCartList = cartItems.map(target=> {
+        if(target.id === itemID) return {...target, quantity: newQuantity }
+        return target
+      })
+      setCartItem(updatedCartList)
+    
+    
+  }
 
   return <div className="App">
     <Header addItemToCart={addItemToCart}/>
@@ -52,7 +61,8 @@ export default function App() {
     <Main 
     cartItems={cartItems}
     addItemToCart={addItemToCart}
-    removeItemFromCart={removeItemFromCart}/>
+    removeItemFromCart={removeItemFromCart}
+    updateQuantityFromInput={updateQuantityFromInput}/>
 
     <div>
       Icons made by

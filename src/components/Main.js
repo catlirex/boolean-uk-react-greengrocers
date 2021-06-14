@@ -1,7 +1,7 @@
 import CartItem from "./CartItem";
 import storeItems from '../data/storeItems'
 
-function Main({cartItems, addItemToCart, removeItemFromCart}){
+function Main({cartItems, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
 
   let total=0
   cartItems.map(cartItem=>{
@@ -18,7 +18,8 @@ function Main({cartItems, addItemToCart, removeItemFromCart}){
         <CartItem key={index}
         cartItem={cartItem}
         addItemToCart={addItemToCart}
-        removeItemFromCart={removeItemFromCart}/>
+        removeItemFromCart={removeItemFromCart}
+        updateQuantityFromInput={updateQuantityFromInput}/>
       ))}
       
     </ul>

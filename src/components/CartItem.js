@@ -1,6 +1,6 @@
 import storeItems from '../data/storeItems'
 
-function CartItem({cartItem, addItemToCart, removeItemFromCart}){
+function CartItem({cartItem, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
   const {id, quantity} = cartItem
   const itemDetail = storeItems.find(target=> target.id === id)
     return(
@@ -12,7 +12,7 @@ function CartItem({cartItem, addItemToCart, removeItemFromCart}){
   />
   <p>beetroot</p>
   <button className="quantity-btn remove-btn center" onClick={()=>removeItemFromCart(id)}>-</button>
-  <span className="quantity-text center">{quantity}</span>
+  <input className="quantity-text center" type="text" placeholder={quantity} onChange={(e)=>updateQuantityFromInput(e.target.value, id)}/>
   <button className="quantity-btn add-btn center" onClick={()=>addItemToCart(id)}>+</button>
 </li>
 
