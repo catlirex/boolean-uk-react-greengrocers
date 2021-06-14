@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import "./styles/index.css";
 
 
-// import storeItems from './data/storeItems'
 
 /* 
 Your store item should have the following structure
@@ -17,6 +16,13 @@ Your store item should have the following structure
 
 export default function App() {
   const [cartItems, setCartItem] = useState([])
+  const [storeItems, setStoreItem] = useState([])
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/storeItems")
+      .then((resp) => resp.json())
+      .then((storeItemsFromServer) => setStoreItem(storeItemsFromServer));
+  }, [])
 
   function addItemToCart(itemID){
     if (cartItems.some( target => target.id === itemID)){
@@ -56,9 +62,12 @@ export default function App() {
   }
 
   return <div className="App">
-    <Header addItemToCart={addItemToCart}/>
+    <Header 
+    storeItems={storeItems}
+    addItemToCart={addItemToCart}/>
 
     <Main 
+    storeItems={storeItems}
     cartItems={cartItems}
     addItemToCart={addItemToCart}
     removeItemFromCart={removeItemFromCart}

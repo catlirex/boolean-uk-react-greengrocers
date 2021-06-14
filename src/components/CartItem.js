@@ -1,6 +1,6 @@
-import storeItems from '../data/storeItems'
 
-function CartItem({cartItem, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
+
+function CartItem({storeItems, cartItem, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
   const {id, quantity} = cartItem
   const itemDetail = storeItems.find(target=> target.id === id)
     return(

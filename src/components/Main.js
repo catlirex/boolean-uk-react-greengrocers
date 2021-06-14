@@ -1,7 +1,6 @@
 import CartItem from "./CartItem";
-import storeItems from '../data/storeItems'
 
-function Main({cartItems, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
+function Main({storeItems, cartItems, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
 
   let total=0
   cartItems.map(cartItem=>{
@@ -15,7 +14,9 @@ function Main({cartItems, addItemToCart, removeItemFromCart, updateQuantityFromI
   <div className="cart--item-list-container">
     <ul className="item-list cart--item-list">
       {cartItems.map((cartItem, index)=>(
-        <CartItem key={index}
+        <CartItem 
+        storeItems={storeItems}
+        key={index}
         cartItem={cartItem}
         addItemToCart={addItemToCart}
         removeItemFromCart={removeItemFromCart}

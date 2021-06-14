@@ -1,11 +1,10 @@
 import StoreItem from "./StoreItem";
 
-import storeItems from '../data/storeItems'
 import { useState } from "react";
 import HeaderFilter from "./HeaderFilter";
 import HeaderSort from "./HeaderSort";
 
-function Header(props){
+function Header({storeItems, addItemToCart}){
     const [filterOption, setFilterOption] = useState("")
     const [sortOption, setSortOption] = useState("")
     let filteredStoreItems = storeItems
@@ -31,7 +30,7 @@ function Header(props){
             <StoreItem 
             key={index}
             item={item}
-            addItemToCart={props.addItemToCart}/>
+            addItemToCart={addItemToCart}/>
         ))}
         
     </ul>
