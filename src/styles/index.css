@@ -177,8 +177,9 @@ button {
   padding: 0.5rem 1rem;
 
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
+  grid-gap: 15px;
 }
 
 .total-number {
@@ -195,6 +196,7 @@ button {
 /* add Item form */
 #addStoreItem {
   position: absolute;
+  top: 50px;
   display: grid;
   background-color: #ffffff;
   padding: 20px;

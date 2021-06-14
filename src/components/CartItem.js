@@ -10,7 +10,7 @@ function CartItem({storeItems, cartItem, addItemToCart, removeItemFromCart, upda
     src={itemDetail.img===undefined? `assets/icons/${id}.svg` : itemDetail.img}
     alt={`${itemDetail.name}`}
   />
-  <p>beetroot</p>
+  <p>{itemDetail.name}</p>
   <button className="quantity-btn remove-btn center" onClick={()=>removeItemFromCart(id)}>-</button>
   <input className="quantity-text center" type="text" placeholder={quantity} onChange={(e)=>updateQuantityFromInput(e.target.value, id)}/>
   <button className="quantity-btn add-btn center" onClick={()=>addItemToCart(id)}>+</button>

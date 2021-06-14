@@ -15,7 +15,7 @@ Your store item should have the following structure
 export default function App() {
   const [cartItems, setCartItem] = useState([])
   const [storeItems, setStoreItem] = useState([])
-  const [userType, setUserType] = useState("staff")
+  const [userType, setUserType] = useState("customer")
 
   useEffect(()=>{
     fetch("http://localhost:4000/storeItems")
@@ -113,6 +113,7 @@ export default function App() {
     setUserType={setUserType}/>
 
     <CustomerCart
+    setCartItem={setCartItem}
     userType={userType}
     storeItems={storeItems}
     cartItems={cartItems}

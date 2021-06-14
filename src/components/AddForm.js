@@ -1,5 +1,12 @@
-function AddForm ({addNewStoreItem}){
+function AddForm ({addNewStoreItem, userType}){
+    function displayStoreForm(){
+        document.getElementById("addStoreItem").style.display === "grid"
+        ? document.getElementById("addStoreItem").style.display = "none"
+        : document.getElementById("addStoreItem").style.display = "grid"
+      }
     return(
+        <div>
+        <button className="display-store-form" style={userType==="staff"? {visibility:"visible"}:{visibility:"hidden"}} onClick={()=>displayStoreForm()} >Add Store Item</button>
         <form id="addStoreItem" name="addStoreItem" onSubmit={(e)=>{
             e.preventDefault()
             addNewStoreItem()
@@ -17,6 +24,7 @@ function AddForm ({addNewStoreItem}){
             </div>
             <button>Add</button>
         </form>
+        </div>
     )
 }
 
