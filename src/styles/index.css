@@ -204,3 +204,24 @@ button {
 .display-store-form {
   position: relative;
 }
+
+nav {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.price-update-container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 10px 1fr 50px;
+  place-items: center;
+}
+.price-update-container input {
+  width: 60px;
+}
+
+.price-update-container button {
+  width: 50px;
+  padding: 5px 0;
+}

@@ -1,6 +1,7 @@
 import CartItem from "./CartItem";
 
-function Main({storeItems, cartItems, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
+function Main({storeItems, cartItems, addItemToCart, removeItemFromCart, updateQuantityFromInput, userType}){
+  if (userType==="staff") return null
 
   let total=0
     cartItems.map(cartItem=>{
@@ -8,7 +9,6 @@ function Main({storeItems, cartItems, addItemToCart, removeItemFromCart, updateQ
       total += (itemDetail.price * cartItem.quantity)
     })
   
-
     return (
         <main id="cart">
   <h2>Your Cart</h2>

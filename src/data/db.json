@@ -3,19 +3,19 @@
     {
       "id": "001-beetroot",
       "name": "beetroot",
-      "price": 0.35,
+      "price": 0.5,
       "type": "vegetable"
     },
     {
       "id": "002-carrot",
       "name": "carrot",
-      "price": 0.55,
+      "price": 2,
       "type": "vegetable"
     },
     {
       "id": "003-apple",
       "name": "apple",
-      "price": 0.7,
+      "price": 11,
       "type": "fruit"
     },
     {
@@ -75,6 +75,10 @@
     },
     {
       "id": "011",
+      "quantity": 1
+    },
+    {
+      "id": "001-beetroot",
       "quantity": 1
     }
   ]

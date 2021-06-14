@@ -1,11 +1,12 @@
-import StoreItem from "./StoreItem";
+import CustomerStoreItem from "./StoreItem";
 
 import { useState } from "react";
 import HeaderFilter from "./HeaderFilter";
 import HeaderSort from "./HeaderSort";
 import AddForm from "./AddForm";
+import StaffStoreItem from "./StaffStoreItem";
 
-function Header({storeItems, addItemToCart, setStoreItem}){
+function Header({storeItems, addItemToCart, setStoreItem, userType, setUserType}){
     const [filterOption, setFilterOption] = useState("")
     const [sortOption, setSortOption] = useState("")
     let filteredStoreItems = storeItems
@@ -49,11 +50,15 @@ function Header({storeItems, addItemToCart, setStoreItem}){
       }
 
     return (
-    <header id="store">
+    <header id="store" style={userType==="staff"? {height:"95vh"} :{height:"40vh"}}>
         <nav>
-            <button className="display-store-form" onClick={()=>displayStoreForm()} >Add Store Item</button>
+            <button className="display-store-form" style={userType==="staff"? {visibility:"visible"}:{visibility:"hidden"}} onClick={()=>displayStoreForm()} >Add Store Item</button>
             <AddForm
             addNewStoreItem={addNewStoreItem}/>
+            <div>
+                <button disabled={userType==="staff"?  true: false} onClick={()=>setUserType("staff")}>Staff Panel</button>
+                <button disabled={userType==="customer"?  true: false} onClick={()=>setUserType("customer")}>Customer View</button>
+            </div>
         </nav>
         <h1>Greengrocers</h1>
 
@@ -63,11 +68,24 @@ function Header({storeItems, addItemToCart, setStoreItem}){
 
         <ul className="item-list store--item-list">
         {sortedStoreItems.map((item, index) => (
-            <StoreItem 
+            <CustomerStoreItem 
+            userType={userType}
             key={index}
             item={item}
             addItemToCart={addItemToCart}/>
         ))}
+
+        {sortedStoreItems.map((item, index) => (
+            <StaffStoreItem 
+            index={index}
+            userType={userType}
+            key={index}
+            item={item}
+            setStoreItem={setStoreItem}
+            storeItems={storeItems}/>
+        ))}
+
+        
         
     </ul>
     </header>

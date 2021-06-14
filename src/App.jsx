@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import Main from "./components/Main";
+import CustomerCart from "./components/Main";
 import "./styles/index.css";
 
 /* 
@@ -15,6 +15,7 @@ Your store item should have the following structure
 export default function App() {
   const [cartItems, setCartItem] = useState([])
   const [storeItems, setStoreItem] = useState([])
+  const [userType, setUserType] = useState("staff")
 
   useEffect(()=>{
     fetch("http://localhost:4000/storeItems")
@@ -101,18 +102,24 @@ export default function App() {
       setCartItem(updatedCartList)
   }
 
+  
+
   return <div className="App">
     <Header 
     storeItems={storeItems}
     setStoreItem={setStoreItem}
-    addItemToCart={addItemToCart}/>
+    addItemToCart={addItemToCart}
+    userType={userType}
+    setUserType={setUserType}/>
 
-    <Main 
+    <CustomerCart
+    userType={userType}
     storeItems={storeItems}
     cartItems={cartItems}
     addItemToCart={addItemToCart}
     removeItemFromCart={removeItemFromCart}
     updateQuantityFromInput={updateQuantityFromInput}/>
+
 
     <div>
       Icons made by

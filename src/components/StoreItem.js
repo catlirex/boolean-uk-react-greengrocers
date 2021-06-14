@@ -4,9 +4,9 @@ function displayPrice(id){
   ? document.getElementById(id+"price").style.display = "none"
   : document.getElementById(id+"price").style.display = "block"
 }
-function StoreItem({item, addItemToCart}){
+function StoreItem({item, addItemToCart, userType}){
   const{ id, name, price} =item
-
+  if (userType==="staff") return null
     return (
         <li>
   <div className="store--item-icon">
