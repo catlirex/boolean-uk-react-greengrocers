@@ -68,7 +68,9 @@ export default function App() {
       fetch(`http://localhost:4000/cart/${itemID}`,{
       method: 'DELETE',})
         .then(response => response.json())
-        .then(data => setCartItem(cartItems.filter(target=> target.id === data.id)))
+        .then(() => {
+         setCartItem(cartItems.filter(target=> target.id !== itemID))
+        })
     }
     else{
       cartItem.quantity -= 1

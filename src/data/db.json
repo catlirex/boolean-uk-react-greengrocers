@@ -63,11 +63,7 @@
   ],
   "cart": [
     {
-      "id": "001-beetroot",
-      "quantity": 1
-    },
-    {
-      "id": "010-eggplant",
+      "id": "003-apple",
       "quantity": 1
     }
   ]
