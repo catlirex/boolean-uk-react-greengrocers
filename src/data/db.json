@@ -59,11 +59,22 @@
       "name": "eggplant",
       "price": 0.55,
       "type": "vegetable"
+    },
+    {
+      "id": "011",
+      "name": "Peach",
+      "price": "3",
+      "img": "https://static.libertyprim.com/files/familles/peche-large.jpg?1574630286",
+      "type": "fruit"
     }
   ],
   "cart": [
     {
       "id": "003-apple",
+      "quantity": 1
+    },
+    {
+      "id": "011",
       "quantity": 1
     }
   ]

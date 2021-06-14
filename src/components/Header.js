@@ -4,7 +4,7 @@ import { useState } from "react";
 import HeaderFilter from "./HeaderFilter";
 import HeaderSort from "./HeaderSort";
 
-function Header({storeItems, addItemToCart}){
+function Header({storeItems, addItemToCart, setStoreItem}){
     const [filterOption, setFilterOption] = useState("")
     const [sortOption, setSortOption] = useState("")
     let filteredStoreItems = storeItems
@@ -16,16 +16,63 @@ function Header({storeItems, addItemToCart}){
     if(sortOption === "low") sortedStoreItems.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0))
     if(sortOption === "high") sortedStoreItems.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0))
 
+    function addNewStoreItem(){
+        let newId= Number(storeItems[storeItems.length-1].id.substring(0, 3))+1
+        newId = String(newId).padStart(3, '0');
+
+        let newStoreItem = {
+            id: newId,
+            name: document.forms["addStoreItem"]["name"].value,
+            price: document.forms["addStoreItem"]["price"].value,
+            img: document.forms["addStoreItem"]["image"].value,
+            type: document.forms["addStoreItem"]["type"].value
+            }
+        
+        fetch("http://localhost:4000/storeItems",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newStoreItem),})
+            .then(response => response.json())
+            .then(data => setStoreItem([...storeItems, data]))      
+    }
+
+    function displayStoreForm(){
+        document.getElementById("addStoreItem").style.display === "grid"
+        ? document.getElementById("addStoreItem").style.display = "none"
+        : document.getElementById("addStoreItem").style.display = "grid"
+      }
+
     return (
-
     <header id="store">
-    <h1>Greengrocers</h1>
+        <nav>
+            <button className="display-store-form" onClick={()=>displayStoreForm()} >Add Store Item</button>
+            <form id="addStoreItem" name="addStoreItem" onSubmit={(e)=>{
+                e.preventDefault()
+                addNewStoreItem()
+            }}>
+                <input id="name" name="name" type="text" placeholder="Item Name" required></input>
+                <input id="price" name="price" type="number" placeholder="Price"  min="0"></input>
+                <input id="image" name="image" type="text" placeholder="Image link" ></input>
+                <div>
+                <input type="radio" id="fruit" name="type" value="fruit"/>
+                <label htmlFor="fruit"> Fruit</label>
+                </div>
+                <div>
+                <input type="radio" id="vegetable" name="type" value="vegetable"/>
+                <label htmlFor="vegetable"> Vegetable</label>
+                </div>
+                <button>Add</button>
+            </form>
+        </nav>
+        <h1>Greengrocers</h1>
 
-    <HeaderFilter setFilterOption={setFilterOption}/>
+        <HeaderFilter setFilterOption={setFilterOption}/>
 
-    <HeaderSort setSortOption={setSortOption}/>
+        <HeaderSort setSortOption={setSortOption}/>
 
-    <ul className="item-list store--item-list">
+        <ul className="item-list store--item-list">
         {sortedStoreItems.map((item, index) => (
             <StoreItem 
             key={index}

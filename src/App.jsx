@@ -104,6 +104,7 @@ export default function App() {
   return <div className="App">
     <Header 
     storeItems={storeItems}
+    setStoreItem={setStoreItem}
     addItemToCart={addItemToCart}/>
 
     <Main 

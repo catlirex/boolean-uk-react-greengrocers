@@ -10,7 +10,7 @@ function StoreItem({item, addItemToCart}){
     return (
         <li>
   <div className="store--item-icon">
-    <img src={`assets/icons/${id}.svg`} alt={name} onClick={()=>displayPrice(id)}/>
+    <img src={item.img===undefined? `assets/icons/${id}.svg` : item.img} alt={name} onClick={()=>displayPrice(id)}/>
   </div>
   <span id={id+"price"} style={{display:"none"}}>£{price} /each</span>
   <button onClick={()=>addItemToCart(id)}>Add to cart</button>

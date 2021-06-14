@@ -191,3 +191,16 @@ button {
     border-bottom: 2px solid #00675b;
   }
 }
+
+/* add Item form */
+#addStoreItem {
+  position: absolute;
+  display: grid;
+  background-color: #ffffff;
+  padding: 20px;
+  display: none;
+}
+
+.display-store-form {
+  position: relative;
+}

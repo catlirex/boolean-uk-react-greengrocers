@@ -7,7 +7,7 @@ function CartItem({storeItems, cartItem, addItemToCart, removeItemFromCart, upda
         <li>
   <img
     className="cart--item-icon"
-    src={`assets/icons/${id}.svg`}
+    src={itemDetail.img===undefined? `assets/icons/${id}.svg` : itemDetail.img}
     alt={`${itemDetail.name}`}
   />
   <p>beetroot</p>
