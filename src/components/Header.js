@@ -24,7 +24,7 @@ function Header({storeItems, addItemToCart, setStoreItem}){
         let newStoreItem = {
             id: newId,
             name: document.forms["addStoreItem"]["name"].value,
-            price: document.forms["addStoreItem"]["price"].value,
+            price: Number(document.forms["addStoreItem"]["price"].value),
             img: document.forms["addStoreItem"]["image"].value,
             type: document.forms["addStoreItem"]["type"].value
             }

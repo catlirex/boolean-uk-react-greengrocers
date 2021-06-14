@@ -3,10 +3,11 @@ import CartItem from "./CartItem";
 function Main({storeItems, cartItems, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
 
   let total=0
-  cartItems.map(cartItem=>{
-    let itemDetail = storeItems.find(target=> target.id === cartItem.id)
-    total = total+ (itemDetail.price * cartItem.quantity)
-  })
+    cartItems.map(cartItem=>{
+      let itemDetail = storeItems.find(target => target.id === cartItem.id)
+      total += (itemDetail.price * cartItem.quantity)
+    })
+  
 
     return (
         <main id="cart">

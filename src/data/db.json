@@ -62,8 +62,8 @@
     },
     {
       "id": "011",
-      "name": "Peach",
-      "price": "3",
+      "name": "peach",
+      "price": 3,
       "img": "https://static.libertyprim.com/files/familles/peche-large.jpg?1574630286",
       "type": "fruit"
     }
@@ -75,10 +75,6 @@
     },
     {
       "id": "011",
-      "quantity": 1
-    },
-    {
-      "id": "012",
       "quantity": 1
     }
   ]
