@@ -3,8 +3,6 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import "./styles/index.css";
 
-
-
 /* 
 Your store item should have the following structure
 {
@@ -19,35 +17,77 @@ export default function App() {
   const [storeItems, setStoreItem] = useState([])
 
   useEffect(()=>{
-    fetch("http://localhost:3000/storeItems")
+    fetch("http://localhost:4000/storeItems")
       .then((resp) => resp.json())
       .then((storeItemsFromServer) => setStoreItem(storeItemsFromServer));
   }, [])
 
+  useEffect(()=>{
+    fetch("http://localhost:4000/cart")
+      .then((resp) => resp.json())
+      .then((cartItemsFromServer) => setCartItem(cartItemsFromServer));
+  }, [])
+
   function addItemToCart(itemID){
-    if (cartItems.some( target => target.id === itemID)){
-      let updatedCartList = cartItems.map(target=> {
-        if(target.id === itemID) return {...target, quantity: target.quantity+1 }
-        return target
-      })
-      setCartItem(updatedCartList)
+    let cartItem = cartItems.find(target=> target.id ===itemID)
+    if (cartItem !== undefined) {
+      cartItem.quantity += 1
+
+      fetch(`http://localhost:4000/cart/${itemID}`,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItem),
+      })  .then(response => response.json())
+          .then(data => {
+            let updatedCartList = cartItems.map(target=> {
+                if(target.id === itemID) return data
+                return target
+              })
+            setCartItem(updatedCartList)
+          })
     }
-    else setCartItem([...cartItems, {id: itemID, quantity: 1}])
+    else {
+      cartItem = {id:itemID, quantity:1}
+      fetch("http://localhost:4000/cart",{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItem),})
+          .then(response => response.json())
+          .then(data => setCartItem([...cartItems, data]))
+    }
   }
 
   function removeItemFromCart(itemID){
-    let itemQuantity = cartItems.find(cartItem=> cartItem.id === itemID).quantity
-    if(itemQuantity===1) {
-      let updatedCartList = cartItems.filter(target=> target.id !== itemID)
-      setCartItem(updatedCartList)
+    let cartItem = cartItems.find(target=> target.id ===itemID)
+    
+    if(cartItem.quantity === 1) {
+      fetch(`http://localhost:4000/cart/${itemID}`,{
+      method: 'DELETE',})
+        .then(response => response.json())
+        .then(data => setCartItem(cartItems.filter(target=> target.id === data.id)))
     }
     else{
-      let updatedCartList = cartItems.map(target=> {
-        if(target.id === itemID) return {...target, quantity: target.quantity-1 }
-        return target
-      })
-      setCartItem(updatedCartList)
-      }
+      cartItem.quantity -= 1
+
+      fetch(`http://localhost:4000/cart/${itemID}`,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItem),
+      })  .then(response => response.json())
+          .then(data => {
+            let updatedCartList = cartItems.map(target=> {
+                if(target.id === itemID) return data
+                return target
+              })
+            setCartItem(updatedCartList)
+          })
+    }
   }
 
   function updateQuantityFromInput(newQuantity, itemID){
@@ -57,8 +97,6 @@ export default function App() {
         return target
       })
       setCartItem(updatedCartList)
-    
-    
   }
 
   return <div className="App">
