@@ -43,17 +43,15 @@ function Header({storeItems, addItemToCart, setStoreItem, userType, setUserType}
                 })      
     }
 
-    function displayStoreForm(){
-        document.getElementById("addStoreItem").style.display === "grid"
-        ? document.getElementById("addStoreItem").style.display = "none"
-        : document.getElementById("addStoreItem").style.display = "grid"
-      }
+    
 
     return (
     <header id="store" style={userType==="staff"? {height:"95vh"} :{height:"40vh"}}>
         <nav>
-            <button className="display-store-form" style={userType==="staff"? {visibility:"visible"}:{visibility:"hidden"}} onClick={()=>displayStoreForm()} >Add Store Item</button>
+            
             <AddForm
+            
+            userType={userType}
             addNewStoreItem={addNewStoreItem}/>
             <div>
                 <button disabled={userType==="staff"?  true: false} onClick={()=>setUserType("staff")}>Staff Panel</button>
