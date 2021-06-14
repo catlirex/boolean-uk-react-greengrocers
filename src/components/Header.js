@@ -3,6 +3,7 @@ import StoreItem from "./StoreItem";
 import { useState } from "react";
 import HeaderFilter from "./HeaderFilter";
 import HeaderSort from "./HeaderSort";
+import AddForm from "./AddForm";
 
 function Header({storeItems, addItemToCart, setStoreItem}){
     const [filterOption, setFilterOption] = useState("")
@@ -35,7 +36,10 @@ function Header({storeItems, addItemToCart, setStoreItem}){
         },
         body: JSON.stringify(newStoreItem),})
             .then(response => response.json())
-            .then(data => setStoreItem([...storeItems, data]))      
+            .then(data => {
+                setStoreItem([...storeItems, data])
+                document.forms["addStoreItem"].reset()
+                })      
     }
 
     function displayStoreForm(){
@@ -48,23 +52,8 @@ function Header({storeItems, addItemToCart, setStoreItem}){
     <header id="store">
         <nav>
             <button className="display-store-form" onClick={()=>displayStoreForm()} >Add Store Item</button>
-            <form id="addStoreItem" name="addStoreItem" onSubmit={(e)=>{
-                e.preventDefault()
-                addNewStoreItem()
-            }}>
-                <input id="name" name="name" type="text" placeholder="Item Name" required></input>
-                <input id="price" name="price" type="number" placeholder="Price"  min="0"></input>
-                <input id="image" name="image" type="text" placeholder="Image link" ></input>
-                <div>
-                <input type="radio" id="fruit" name="type" value="fruit"/>
-                <label htmlFor="fruit"> Fruit</label>
-                </div>
-                <div>
-                <input type="radio" id="vegetable" name="type" value="vegetable"/>
-                <label htmlFor="vegetable"> Vegetable</label>
-                </div>
-                <button>Add</button>
-            </form>
+            <AddForm
+            addNewStoreItem={addNewStoreItem}/>
         </nav>
         <h1>Greengrocers</h1>
 
