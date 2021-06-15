@@ -68,37 +68,58 @@
       "type": "fruit"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "003-apple",
+      "quantity": 1
+    },
+    {
+      "id": "004-apricot",
+      "quantity": 1
+    }
+  ],
   "invoice": [
-    [
-      {
-        "id": "001-beetroot",
-        "quantity": 2,
-        "price": 0.5,
-        "name": "beetroot"
-      }
-    ],
-    [
-      {
-        "id": "003-apple",
-        "quantity": 3,
-        "price": 11,
-        "name": "apple"
-      }
-    ],
-    [
-      {
-        "id": "008-berry",
-        "quantity": 1,
-        "price": 0.9,
-        "name": "berry"
-      },
-      {
-        "id": "011",
-        "quantity": 3,
-        "price": 3,
-        "name": "peach"
-      }
-    ]
+    {
+      "date": "2021-06-14T23:46:38.998Z",
+      "items": [
+        {
+          "id": "001-beetroot",
+          "quantity": 2,
+          "price": 0.5,
+          "name": "beetroot"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "date": "2021-06-14T23:46:59.954Z",
+      "items": [
+        {
+          "id": "004-apricot",
+          "quantity": 2,
+          "price": 0.8,
+          "name": "apricot"
+        },
+        {
+          "id": "008-berry",
+          "quantity": 1,
+          "price": 0.9,
+          "name": "berry"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "date": "2021-06-15T00:42:38.567Z",
+      "items": [
+        {
+          "id": "005-avocado",
+          "quantity": 1,
+          "price": 1.55,
+          "name": "avocado"
+        }
+      ],
+      "id": 3
+    }
   ]
 }

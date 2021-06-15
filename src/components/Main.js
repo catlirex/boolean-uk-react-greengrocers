@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartItem from "./CartItem";
-
-
+import InvoiceCard from "./InvoiceCard";
 
 function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFromCart, updateQuantityFromInput, userType}){
   if (userType==="staff") return null
@@ -9,18 +8,27 @@ function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFrom
   const [invoiceList, setInvoice] = useState([])
 
   let total=0
-    cartItems.map(cartItem=>{
-      let itemDetail = storeItems.find(target => target.id === cartItem.id)
-      total += (itemDetail.price * cartItem.quantity)
-    })
+  cartItems.map(cartItem=>{
+    let itemDetail = storeItems.find(target => target.id === cartItem.id)
+    total += (itemDetail.price * cartItem.quantity)
+  })
+
+  useEffect(()=>{
+    fetch("http://localhost:4000/invoice")
+      .then((resp) => resp.json())
+      .then((invoiceFromServer) => setInvoice(invoiceFromServer));
+  }, [])
 
     function checkOut(){
-      let newInvoice = []
+      let newInvoice = {
+        date: new Date(),
+        items:[]
+      }
       cartItems.map(cartItem=>{
         let itemDetail = storeItems.find(target=> target.id === cartItem.id)
     
         let itemAddToInvoice={...cartItem, price: itemDetail.price, name:itemDetail.name}
-        newInvoice=[...newInvoice, itemAddToInvoice];
+        newInvoice.items=[...newInvoice.items, itemAddToInvoice];
 
         fetch(`http://localhost:4000/cart/${itemDetail.id}`,{
         method: 'DELETE',})
@@ -36,14 +44,13 @@ function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFrom
       },
       body: JSON.stringify(newInvoice),})
           .then(response => response.json())
-          .then(data => setInvoice([...invoiceList, data]))
-      
-      
-              
+          .then(data => setInvoice([...invoiceList, data])) 
+                   
     }
   
     return (
-        <main id="cart">
+        <main >
+    <div id="cart">
   <h2>Your Cart</h2>
   <div className="cart--item-list-container">
     <ul className="item-list cart--item-list">
@@ -56,7 +63,6 @@ function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFrom
         removeItemFromCart={removeItemFromCart}
         updateQuantityFromInput={updateQuantityFromInput}/>
       ))}
-      
     </ul>
   </div>
   <div className="total-section">
@@ -68,6 +74,19 @@ function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFrom
       
     </div>
     <button onClick={()=>checkOut()}>Check Out</button>
+  </div>
+  </div>
+  <div className="record-container">
+    <h3>Your past order</h3>
+      {invoiceList.map((invoice, index)=>(
+        <InvoiceCard
+        invoice={invoice}
+        key={index}/>
+      ))}
+
+    
+
+    
   </div>
 </main>
 
