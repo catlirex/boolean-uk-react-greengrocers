@@ -70,29 +70,21 @@
   ],
   "cart": [
     {
-      "id": "003-apple",
+      "id": "001-beetroot",
       "quantity": 1
     },
     {
-      "id": "004-apricot",
+      "id": "002-carrot",
+      "quantity": 3
+    },
+    {
+      "id": "003-apple",
       "quantity": 1
     }
   ],
   "invoice": [
     {
-      "date": "2021-06-14T23:46:38.998Z",
-      "items": [
-        {
-          "id": "001-beetroot",
-          "quantity": 2,
-          "price": 0.5,
-          "name": "beetroot"
-        }
-      ],
-      "id": 1
-    },
-    {
-      "date": "2021-06-14T23:46:59.954Z",
+      "date": "2021-06-16T14:10:02.341Z",
       "items": [
         {
           "id": "004-apricot",
@@ -101,22 +93,48 @@
           "name": "apricot"
         },
         {
-          "id": "008-berry",
+          "id": "011",
+          "quantity": 4,
+          "price": 3,
+          "name": "peach",
+          "img": "https://static.libertyprim.com/files/familles/peche-large.jpg?1574630286"
+        },
+        {
+          "id": "010-eggplant",
           "quantity": 1,
-          "price": 0.9,
-          "name": "berry"
+          "price": 0.55,
+          "name": "eggplant"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "date": "2021-06-16T14:10:17.818Z",
+      "items": [
+        {
+          "id": "003-apple",
+          "quantity": 2,
+          "price": 11,
+          "name": "apple"
         }
       ],
       "id": 2
     },
     {
-      "date": "2021-06-15T00:42:38.567Z",
+      "date": "2021-06-16T14:10:22.147Z",
       "items": [
         {
-          "id": "005-avocado",
+          "id": "011",
+          "quantity": 2,
+          "price": 3,
+          "name": "peach",
+          "img": "https://static.libertyprim.com/files/familles/peche-large.jpg?1574630286"
+        },
+        {
+          "id": "010-eggplant",
           "quantity": 1,
-          "price": 1.55,
-          "name": "avocado"
+          "price": 0.55,
+          "name": "eggplant"
         }
       ],
       "id": 3

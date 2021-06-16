@@ -54,8 +54,24 @@ function Header({storeItems, addItemToCart, setStoreItem, userType, setUserType}
             userType={userType}
             addNewStoreItem={addNewStoreItem}/>
             <div>
-                <button disabled={userType==="staff"?  true: false} onClick={()=>setUserType("staff")}>Staff Panel</button>
-                <button disabled={userType==="customer"?  true: false} onClick={()=>setUserType("customer")}>Customer View</button>
+                <button disabled={userType==="staff"?  true: false} onClick={()=>document.querySelector(".staff-login").style.display = "block"}>Staff Panel</button>
+                <button disabled={userType==="customer"?  true: false} onClick={()=>setUserType("customer")} >Customer View</button>
+                <form id="staff-login" className="staff-login" onSubmit={(e)=>{
+                        e.preventDefault()
+                        if(document.forms["staff-login"]["password"].value !== "000000"){
+                            alert("Password Incorrect, please try again")
+                            document.forms["staff-login"].reset()
+                        }
+                        else{
+                            setUserType("staff")
+                            document.forms["staff-login"].reset()
+                            document.querySelector(".staff-login").style.display = "none"
+                        }
+                        
+                    }}>
+                    <input name="password" type="password" placeholder="pw: 000000"/>
+                    <button type="submit">Login</button>
+                </form>
             </div>
         </nav>
         <h1>Greengrocers</h1>

@@ -13,14 +13,14 @@ function InvoiceCard({invoice}){
       <div className="small-card">
         <div>
           <span>Date: {date.slice(0,10)}</span>
-          <span>Total:${invoiceTotal}</span>
+          <span>Total:${invoiceTotal.toFixed(2)}</span>
         </div>
         <button className="detail-btn" onClick={()=>displayInvoiceDetail(id)}> details </button>
       </div>
       <ul className="invoice-list" id={id+"invoice"}>
         {items.map((target,index)=>(
             <li className="invoice-item" key={index.toString()}>
-            <img className="cart--item-icon" src={`assets/icons/${target.id}.svg`} alt={target.name}/>
+            <img className="cart--item-icon" src={target.img!==undefined? target.img:`assets/icons/${target.id}.svg`} alt={target.name}/>
               <span>{target.name} x {target.quantity}</span> <span>£{target.price}/each</span>
             </li>
         ))}

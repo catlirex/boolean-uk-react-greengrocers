@@ -3,6 +3,7 @@
 function CartItem({storeItems, cartItem, addItemToCart, removeItemFromCart, updateQuantityFromInput}){
   const {id, quantity} = cartItem
   const itemDetail = storeItems.find(target=> target.id === id)
+  if(itemDetail===undefined) return
     return(
         <li>
   <img

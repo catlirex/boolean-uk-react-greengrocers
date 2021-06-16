@@ -9,6 +9,7 @@ function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFrom
 
   let total=0
   cartItems.map(cartItem=>{
+    if (storeItems.length ===0) return 
     let itemDetail = storeItems.find(target => target.id === cartItem.id)
     total += (itemDetail.price * cartItem.quantity)
   })
@@ -28,6 +29,7 @@ function Main({storeItems, cartItems, setCartItem, addItemToCart, removeItemFrom
         let itemDetail = storeItems.find(target=> target.id === cartItem.id)
     
         let itemAddToInvoice={...cartItem, price: itemDetail.price, name:itemDetail.name}
+        if (itemDetail.img !== undefined) itemAddToInvoice.img = itemDetail.img
         newInvoice.items=[...newInvoice.items, itemAddToInvoice];
 
         fetch(`http://localhost:4000/cart/${itemDetail.id}`,{
