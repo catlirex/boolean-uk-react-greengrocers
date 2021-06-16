@@ -68,20 +68,7 @@
       "type": "fruit"
     }
   ],
-  "cart": [
-    {
-      "id": "001-beetroot",
-      "quantity": 1
-    },
-    {
-      "id": "002-carrot",
-      "quantity": 3
-    },
-    {
-      "id": "003-apple",
-      "quantity": 1
-    }
-  ],
+  "cart": [],
   "invoice": [
     {
       "date": "2021-06-16T14:10:02.341Z",
@@ -138,6 +125,54 @@
         }
       ],
       "id": 3
+    },
+    {
+      "date": "2021-06-16T14:42:00.827Z",
+      "items": [
+        {
+          "id": "001-beetroot",
+          "quantity": 4,
+          "price": 0.5,
+          "name": "beetroot"
+        },
+        {
+          "id": "003-apple",
+          "quantity": 1,
+          "price": 11,
+          "name": "apple"
+        },
+        {
+          "id": "010-eggplant",
+          "quantity": 1,
+          "price": 0.55,
+          "name": "eggplant"
+        },
+        {
+          "id": "009-blueberry",
+          "quantity": 1,
+          "price": 1.8,
+          "name": "blueberry"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "date": "2021-06-16T14:42:25.492Z",
+      "items": [
+        {
+          "id": "001-beetroot",
+          "quantity": 1,
+          "price": 0.5,
+          "name": "beetroot"
+        },
+        {
+          "id": "002-carrot",
+          "quantity": 1,
+          "price": 2,
+          "name": "carrot"
+        }
+      ],
+      "id": 5
     }
   ]
 }

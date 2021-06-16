@@ -16,12 +16,20 @@ export default function App() {
   const [cartItems, setCartItem] = useState([])
   const [storeItems, setStoreItem] = useState([])
   const [userType, setUserType] = useState("customer")
+  const [updateTime, setUpdateTime] = useState(Date.now())
+
+  useEffect(()=>{
+    let timeInterval = setInterval(()=>setUpdateTime(Date.now()), 10000)
+    return ()=> clearInterval(timeInterval)
+  },[])
+
 
   useEffect(()=>{
     fetch("http://localhost:4000/storeItems")
       .then((resp) => resp.json())
-      .then((storeItemsFromServer) => setStoreItem(storeItemsFromServer));
-  }, [])
+      .then((storeItemsFromServer) => setStoreItem(storeItemsFromServer)
+      );
+  }, [updateTime])
 
   useEffect(()=>{
     fetch("http://localhost:4000/cart")
@@ -106,6 +114,7 @@ export default function App() {
 
   return <div className="App">
     <Header 
+    updateTime={updateTime}
     storeItems={storeItems}
     setStoreItem={setStoreItem}
     addItemToCart={addItemToCart}
@@ -129,6 +138,8 @@ export default function App() {
       >
       from
       <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+      <span className="refresh-time">Price refresh time: {new Date(updateTime).toString()}</span>
+
     </div>
   </div>;
 }

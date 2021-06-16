@@ -6,7 +6,7 @@ import HeaderSort from "./HeaderSort";
 import AddForm from "./AddForm";
 import StaffStoreItem from "./StaffStoreItem";
 
-function Header({storeItems, addItemToCart, setStoreItem, userType, setUserType}){
+function Header({storeItems, addItemToCart, setStoreItem, userType, setUserType, updateTime}){
     const [filterOption, setFilterOption] = useState("")
     const [sortOption, setSortOption] = useState("")
     let filteredStoreItems = storeItems
@@ -48,7 +48,6 @@ function Header({storeItems, addItemToCart, setStoreItem, userType, setUserType}
     return (
     <header id="store" style={userType==="staff"? {height:"95vh"} :{height:"40vh"}}>
         <nav>
-            
             <AddForm
             
             userType={userType}
